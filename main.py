@@ -126,7 +126,6 @@ def reload(call):
 
 #Обработка кнопок главного мею
 def contakts(message):
-    from config import adres
     bot.send_message(message.chat.id, 'Наш адрес: 601351, Владимирская обл.,г.Судогда,ул. Гагарина, 5.\n'
                                       'Наши телефоны: 8(49235)2-12-16; 2-25-12;\n'
                                       'E-mail: srtp@bk.ru; s-ploskorez@gmail.com')

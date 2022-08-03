@@ -84,14 +84,34 @@ def plockmarkup2():
         markup.add(item)
     markup.add(gv, next)
     return markup
-def object(URL):
+def object1(URL):
+    markup = types.InlineKeyboardMarkup()
+    buy = types.InlineKeyboardButton('Купить', callback_data='buy')
+    back2 = types.InlineKeyboardButton('Назад', callback_data='back1')
+    url = types.InlineKeyboardButton('Подробная информация', url=URL)
+    markup.add(buy, back2, url)
+    return markup
+def object2(URL):
     markup = types.InlineKeyboardMarkup()
     buy = types.InlineKeyboardButton('Купить', callback_data='buy')
     back2 = types.InlineKeyboardButton('Назад', callback_data='back2')
     url = types.InlineKeyboardButton('Подробная информация', url=URL)
     markup.add(buy, back2, url)
     return markup
-
+def object3(URL):
+    markup = types.InlineKeyboardMarkup()
+    buy = types.InlineKeyboardButton('Купить', callback_data='buy')
+    back2 = types.InlineKeyboardButton('Назад', callback_data='back3')
+    url = types.InlineKeyboardButton('Подробная информация', url=URL)
+    markup.add(buy, back2, url)
+    return markup
+def object4(URL):
+    markup = types.InlineKeyboardMarkup()
+    buy = types.InlineKeyboardButton('Купить', callback_data='buy')
+    back2 = types.InlineKeyboardButton('Назад', callback_data='back4')
+    url = types.InlineKeyboardButton('Подробная информация', url=URL)
+    markup.add(buy, back2, url)
+    return markup
 #Обработка
 @bot.callback_query_handler(func=lambda call: True)
 def reload(call):
@@ -112,8 +132,14 @@ def reload(call):
         if call.data == sp2[i]:
             iter = i
             obj2(call.message, iter)
+    if call.data == 'back1':
+        back1(call.message)
     if call.data == 'back2':
         back2(call.message)
+    if call.data == 'back3':
+        back3(call.message)
+    if call.data == 'back4':
+        back4(call.message)
     if call.data == 'Контакты':
         contakts(call.message)
 
@@ -163,15 +189,19 @@ def BackSec(message):
     bot.delete_message(message.chat.id, message_id=message.message_id)
 def obj3(message, i):
     from config import ALLTEXT3, ALLURLINF3, ALLURLPIC3
-    bot.send_photo(message.chat.id, ALLURLPIC3[i], caption=ALLTEXT3[i], reply_markup=object(ALLURLINF3[i]))
+    bot.send_photo(message.chat.id, ALLURLPIC3[i], caption=ALLTEXT3[i], reply_markup=object3(ALLURLINF3[i]))
     bot.delete_message(message.chat.id, message_id=message.message_id)
 def back3(message):
     from config import URL2
     bot.send_photo(message.chat.id, URL2, reply_markup=sadmarkup1())
     bot.delete_message(message.chat.id, message_id=message.message_id)
+def back4(message):
+    from config import URL2
+    bot.send_photo(message.chat.id, URL2, reply_markup=sadmarkup2())
+    bot.delete_message(message.chat.id, message_id=message.message_id)
 def obj4(message, i):
     from config import ALLTEXT4, ALLURLINF4, ALLURLPIC4
-    bot.send_photo(message.chat.id, ALLURLPIC4[i], caption=ALLTEXT4[i], reply_markup=object(ALLURLINF4[i]))
+    bot.send_photo(message.chat.id, ALLURLPIC4[i], caption=ALLTEXT4[i], reply_markup=object4(ALLURLINF4[i]))
     bot.delete_message(message.chat.id, message_id=message.message_id)
 #Плоскорезы
 def plock(message):
@@ -183,21 +213,21 @@ def next(message):
     from config import URL2
     bot.send_photo(message.chat.id, URL2, reply_markup=plockmarkup2())
     bot.delete_message(message.chat.id, message_id=message.message_id)
-def back(message):
+def back1(message):
     from config import URL2
     bot.send_photo(message.chat.id, URL2, reply_markup=plockmarkup())
     bot.delete_message(message.chat.id, message_id=message.message_id)
 def obj1(message, i):
     from config import ALLTEXT1, ALLURLINF1, ALLURLPIC1
-    bot.send_photo(message.chat.id, ALLURLPIC1[i], caption=ALLTEXT1[i], reply_markup=object(ALLURLINF1[i]))
+    bot.send_photo(message.chat.id, ALLURLPIC1[i], caption=ALLTEXT1[i], reply_markup=object1(ALLURLINF1[i]))
     bot.delete_message(message.chat.id, message_id=message.message_id)
 def obj2(message, i):
     from config import ALLTEXT2, ALLURLINF2, ALLURLPIC2
-    bot.send_photo(message.chat.id, ALLURLPIC2[i], caption=ALLTEXT2[i], reply_markup=object(ALLURLINF2[i]))
+    bot.send_photo(message.chat.id, ALLURLPIC2[i], caption=ALLTEXT2[i], reply_markup=object2(ALLURLINF2[i]))
     bot.delete_message(message.chat.id, message_id=message.message_id)
 def back2(message):
     from config import URL2
-    bot.send_photo(message.chat.id, URL2, reply_markup=plockmarkup())
+    bot.send_photo(message.chat.id, URL2, reply_markup=plockmarkup2())
     bot.delete_message(message.chat.id, message_id=message.message_id)
 
 
